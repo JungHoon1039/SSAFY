@@ -1,0 +1,51 @@
+nav {
+    background-color: #008275;
+    color: white;
+}
+
+nav > input {
+    width: 100%;
+    height: 30px;
+}
+
+.index {
+    border: 1px solid #ccc;
+    width: 150px;
+}
+
+.summary {
+    border: 2px solid #034EA2;
+    width: 300px;
+    text-align: center;
+    margin-left: auto;
+}
+
+.summary div {
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+}
+
+.header, .label {
+    background-color: #034EA2;
+    color: white;
+}
+
+.row {
+    display: flex;
+}
+
+.label {
+    width: 30%;
+}
+
+.value {
+    width: 70%;
+}
+
+img {
+    width: 100%;
+}
+
+h1, p, body {
+    margin: 0;
+}
