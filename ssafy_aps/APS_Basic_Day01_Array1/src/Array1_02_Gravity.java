@@ -6,8 +6,8 @@ public class Array1_02_Gravity {
         int max = 0;
         for (int i = 0; i < N; i++) {
             int cnt = N - i;
-            for (int j = 0; j < N; j++) {
-                if (arr[i] <= arr[j]) {
+            for (int k : arr) {
+                if (arr[i] <= k) {
                     cnt--;
                 }
             }
