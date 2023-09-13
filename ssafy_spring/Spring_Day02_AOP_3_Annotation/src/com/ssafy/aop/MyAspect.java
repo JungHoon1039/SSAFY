@@ -16,7 +16,7 @@ public class MyAspect {
     }
 
     // 실행 이전
-//	@Before("mypt()")
+//    @Before("mypt()")
     public void before() {
         System.out.println("컴퓨터를 부팅한다.");
     }
