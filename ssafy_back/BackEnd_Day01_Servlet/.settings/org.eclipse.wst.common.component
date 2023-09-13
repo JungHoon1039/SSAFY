@@ -2,7 +2,7 @@
     <wb-module deploy-name="BackEnd_Day01_Servlet">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="BackEnd_Day01_Servlet"/>
         <property name="java-output-path" value="/BackEnd_Day01_Servlet/build/classes"/>
+        <property name="context-root" value="BackEnd_Day01_Servlet"/>
     </wb-module>
 </project-modules>
