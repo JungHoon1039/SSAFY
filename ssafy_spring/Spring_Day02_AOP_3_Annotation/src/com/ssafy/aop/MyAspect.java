@@ -1,6 +1,7 @@
 package com.ssafy.aop;
 
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
@@ -22,13 +23,13 @@ public class MyAspect {
     }
 
     // 실행 이후 (예외 없이)
-//	@AfterReturning(value="mypt()", returning = "num")
+    @AfterReturning(value = "mypt()", returning = "num")
     public void afterReturning(int num) {
         System.out.println("Git에 Push 한다." + num + "줄의 코드를");
     }
 
-    // 예외 발생 (서7김태운 / 대4박소현)
-//	@AfterThrowing(value = "mypt()", throwing = "th")
+    // 예외 발생
+//    @AfterThrowing(value = "mypt()", throwing = "th")
     public void afterThrowing(Throwable th) {
         System.out.println("반차를 낸다.");
         if (th instanceof OuchException) {
@@ -36,7 +37,7 @@ public class MyAspect {
         }
     }
 
-//	@After("mypt()")
+//    @After("mypt()")
     public void after() {
         System.out.println("하루를 마무리 한다.");
     }
