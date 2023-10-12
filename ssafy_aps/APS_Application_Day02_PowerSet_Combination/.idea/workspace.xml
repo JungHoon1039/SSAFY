@@ -4,67 +4,54 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="51091f05-93fd-41c9-a3ad-2946d384f286" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="71b7834a-ef52-4378-93f9-5d44d2789474" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../APS_Application_Day01_Start/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../APS_Application_Day01_Start/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APS_Application_Day01_Start/out/production/APS_Application_Day01_Start/Start_01_비트연산자.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/APS_Application_Day02_PowerSet_Combination/부분집합_01.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/APS_Application_Day02_PowerSet_Combination/부분집합_02.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/APS_Application_Day02_PowerSet_Combination/부분집합_03.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/APS_Application_Day02_PowerSet_Combination/조합_01.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/APS_Application_Day02_PowerSet_Combination/조합_02.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APS_Application_Day03_DivisionConquer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../APS_Application_Day03_DivisionConquer/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APS_Application_Day04_backTracking/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../APS_Application_Day04_backTracking/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APS_Application_Day05_Algorithm/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../APS_Application_Day05_Algorithm/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../APS_Application_Day06_Graph/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../APS_Application_Day06_Graph/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ssafy_spring/Servers/Tomcat v9.0 Server at localhost-config/server.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../ssafy_spring/Servers/Tomcat v9.0 Server at localhost-config/server.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 0
+  &quot;associatedIndex&quot;: 2
 }</component>
-  <component name="ProjectId" id="2UgHXxuWXxnRgKuk0BppKWQr8gd" />
+  <component name="ProjectId" id="2WeGrHg8ggMlOxx4sdCJXy9eMNg" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/SSAFY/Desktop/JH/Git/SSAFY/ssafy_aps/APS_Application_Day02_PowerSet_Combination&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;inlay.hints&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/SSAFY/Desktop/JH/Git/SSAFY/ssafy_aps/APS_Application_Day02_PowerSet_Combination"
   }
-}</component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\SSAFY\Desktop\JH\Git\SSAFY\ssafy_aps\APS_Application_Day02_PowerSet_Combination\src" />
-    </key>
-  </component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="51091f05-93fd-41c9-a3ad-2946d384f286" name="Changes" comment="" />
-      <created>1693354348659</created>
+      <changelist id="71b7834a-ef52-4378-93f9-5d44d2789474" name="Changes" comment="" />
+      <created>1697085830495</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1693354348659</updated>
+      <updated>1697085830495</updated>
     </task>
     <servers />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-field">
-          <url>file://$PROJECT_DIR$/src/부분집합_03.java</url>
-          <line>2</line>
-          <properties field="N" class="부분집합_03" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
