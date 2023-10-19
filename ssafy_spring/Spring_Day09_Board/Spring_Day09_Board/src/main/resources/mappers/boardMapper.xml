@@ -25,10 +25,10 @@
 		WHERE id = #{id};
 	</select>
 
-	<!-- 게시글 등록 -->
-	<insert id="insertBoard" parameterType="Board" keyProperty="id">
-		INSERT INTO board (title, writer, content)
-		VALUES (#{title}, #{writer}, #{content})
+	<!-- 게시글 등록(서8 박정훈) -->
+	<insert id="insertBoard" parameterType="Board" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO board (id, title, writer, content)
+		VALUES (#{id}, #{title}, #{writer}, #{content})
 	</insert>
 	
 	<!-- 게시글 삭제 -->
@@ -66,8 +66,6 @@
 			ORDER BY ${orderBy} ${orderByDir}
 		</if>
 	</select>
-	
-	
 	
 	
 	
