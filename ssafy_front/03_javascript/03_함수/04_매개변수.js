@@ -1,5 +1,6 @@
 function fn(num) {
   console.log(num);
+  console.log(arguments);
 }
 
 fn();

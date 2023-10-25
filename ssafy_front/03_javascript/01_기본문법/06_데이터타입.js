@@ -8,15 +8,16 @@ let obj = {};
 let obj2 = new Object(); 
 let symbol = Symbol();
 
-console.log(num1);
-console.log(num2);
-console.log(msg);
-console.log(bool);
-console.log(nullVal);
-console.log(unVal);
-console.log(obj);
-console.log(obj2);
-console.log(symbol);
+// 데이터 타입의 확인에는 typeof 연산자 사용
+console.log(typeof num1);
+console.log(typeof num2);
+console.log(typeof msg);
+console.log(typeof bool);
+console.log(typeof nullVal); // null -> object
+console.log(typeof unVal); // undefined -> undefined
+console.log(typeof obj);
+console.log(typeof obj2);
+console.log(typeof symbol);
 
 console.log('-----------------')
 

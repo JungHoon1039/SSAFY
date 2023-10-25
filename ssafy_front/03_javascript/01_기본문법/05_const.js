@@ -1,5 +1,5 @@
 /* const */
-
+let age =3333;
 const id = "hong";
 console.log(id);
 id = "lee";

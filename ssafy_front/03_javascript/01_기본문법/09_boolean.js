@@ -3,7 +3,7 @@ console.log(!!"");
 console.log(!!null);
 console.log(!!undefined);
 console.log(!!NaN);
-console.log(!!"0");
+console.log(!!"0"); // 비어있지 않은 문자열
 console.log(!!Number("0"));
 console.log(Boolean());
 

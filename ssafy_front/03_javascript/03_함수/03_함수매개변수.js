@@ -1,5 +1,9 @@
-function func(callFn) {
-  callFn("hello");
+function func(c) {
+  c("hello");
+}
+
+let c = function(msg){
+  console.log(msg);
 }
 
 function fn(msg) {
