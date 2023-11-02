@@ -13,5 +13,7 @@ import MyComponent from '@/components/MyComponent.vue'
 </script>
 
 <style scoped>
-
+div {
+    color: red;
+}
 </style>
