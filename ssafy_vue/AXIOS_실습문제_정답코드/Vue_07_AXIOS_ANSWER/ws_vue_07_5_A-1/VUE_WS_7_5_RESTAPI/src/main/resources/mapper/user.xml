@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.ws.model.mapper.UserDao">
+	<insert id="insertUser" parameterType="UserDto">
+		insert into `user` (id, 
+			user_pwd, 
+			user_name, 
+			nickname, 
+			email, 
+			user_rank, 
+			joined_at)
+		values (#{userId}, 
+			#{userPwd}, 
+			#{userName}, 
+			#{nickname}, 
+			#{email}, 
+			1, 
+			now())
+	</insert>
+	<select id="selectUsers" resultMap="userMap">
+		select * 
+		  from user 
+	</select >
+	<select id="selectUser" parameterType="map" resultMap="userMap">
+		SELECT * 
+		  FROM user
+		 WHERE 1=1
+		 <if test="userSeq !=null">
+			AND user_seq = #{userSeq}
+		   </if>
+		   <if test="userId !=null">
+			AND id = #{userId}
+		   </if>
+	</select >
+	
+	<select id="checkPassword" parameterType="map" resultType="int">
+		SELECT count(*) FROM user
+		WHERE id = #{userId} and user_pwd = #{userPwd}
+	</select>
+	
+	
+	<update id="updateUser" parameterType="map">
+		UPDATE user
+		   SET user_name = #{userName},
+			   user_pwd = #{userPwd},
+			   nickname = #{nickname},
+			   email = #{email}
+		WHERE  user_seq = #{userSeq}
+	</update>
+	
+	<delete id="deleteUser" parameterType="int">
+		DELETE FROM user
+		WHERE user_seq = #{userSeq}
+	</delete>
+	
+	
+	<!-- ResultMap -->
+	<resultMap type="map" id="userMap">
+		<result property="userSeq" column="user_seq"/>
+		<result property="userId" column="id"/>
+		<result property="userPwd" column="user_pwd"/>
+		<result property="userName" column="user_name"/>
+		<result property="nickname" column="nickname"/>
+		<result property="email" column="email"/>
+		<result property="userRank" column="user_rank"/>
+		<result property="joinedAt" column="joined_at"/>
+		
+	</resultMap>
+	
+	
+	
+</mapper>

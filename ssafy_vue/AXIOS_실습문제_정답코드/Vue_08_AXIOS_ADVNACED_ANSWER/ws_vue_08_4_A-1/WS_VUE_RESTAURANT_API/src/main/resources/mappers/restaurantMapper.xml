@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- name space는 UserRepo의 fully qualified name으로 설정한다. -->
+<mapper namespace="com.ssafy.ws.model.dao.RestaurantDao">
+
+	<insert id="insertRestaurant" parameterType="Restaurant">
+		INSERT INTO
+		RESTAURANT (resId, resName, resAddress, signatureMenu, resRate, fileName, fileUri)
+		VALUES (#{resId} , #{resName} , #{resAddress} , #{signatureMenu} , #{resRate}, #{fileName}, #{fileUri})
+	</insert>
+
+	<update id="updateRestaurant" parameterType="Restaurant">
+		UPDATE RESTAURANT
+		SET resName = #{resName} , resAddress = #{resAddress}, signatureMenu = #{signatureMenu}, resRate = #{resRate}
+		WHERE resId = #{resId}
+	</update>
+
+	<delete id="deleteRestaurant" parameterType="Integer">
+		DELETE FROM restaurant
+		WHERE resId = #{resId}
+	</delete>
+
+	<select id="selectRestaurantById" parameterType="Integer" resultType="Restaurant">
+		SELECT *
+		FROM RESTAURANT
+		WHERE resId = #{resId}
+	</select>
+
+	<select id="selectAllRestaurant" resultType="Restaurant">
+		SELECT *
+		FROM
+		RESTAURANT
+	</select>
+
+	<select id="selectByCondition" parameterType="SearchCondition" resultType="Restaurant">
+		SELECT * FROM RESTAURANT
+		<if test="key!='none'">
+			where ${key} like concat('%' , #{word},'%')
+		</if>
+		<if test="orderBy!='none'">
+			order by ${orderBy} ${orderByDir}
+		</if>
+		<if test="limit">
+			limit #{offset} , #{countPerPage}
+		</if>
+	</select>
+
+	<select id="getTotalCount" resultType="int" parameterType="SearchCondition">
+		SELECT COUNT(*) FROM RESTAURANT
+		<if test="key!='none'">
+			WHERE ${key} like concat('%', #{word}, '%')
+		</if>
+	</select>
+
+
+</mapper>

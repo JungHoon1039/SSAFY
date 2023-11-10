@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.ws.model.mapper.ArticleDao">
+
+	<update id="increaseViewCnt" parameterType="int">
+		UPDATE article SET view_cnt = view_cnt + 1
+		WHERE id = #{articleId}
+	</update>
+
+	<select id="selectMaxRgt" parameterType="int" resultType="int">
+		SELECT ifnull(max(rgt), 0) as maxRgt
+		FROM article
+		where board_id = #{boardId}
+	</select>
+	
+	<select id="getParentDepth" parameterType="map" resultType="int">
+		SELECT depth FROM article where id = #{articleId}
+	</select>	
+	
+	<insert id="insertArticle" parameterType="map">
+		INSERT
+		INTO article
+		(title,
+		content,
+		board_id,
+		user_seq,
+		view_cnt,
+		lft,rgt,
+		depth,
+		created_at,
+		modified_at)
+		VALUES
+		(#{title},
+		#{content},
+		#{boardId},
+		#{userSeq},
+		0,
+		#{maxRgt}+1,
+		#{maxRgt}+2,
+		0,
+		now(),
+		now())
+		<selectKey resultType="int" keyProperty="articleId"
+			order="AFTER">
+			select last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<insert id="replyArticle" parameterType="map">
+		INSERT
+		INTO article
+			(title,
+			content,
+			board_id,
+			user_seq,
+			view_cnt,
+			lft,
+			rgt,
+			depth,
+			created_at,
+			modified_at)
+		VALUES
+			(#{title},
+			#{content},
+			#{boardId},
+			#{userSeq},
+			0,
+			#{targetLft}+1,
+			#{targetLft}+2,
+			#{depth},
+			now(),
+			now())
+		<selectKey resultType="int" keyProperty="articleId"
+			order="AFTER">
+			select last_insert_id()
+		</selectKey>
+	</insert>
+
+	<insert id="saveFile" parameterType="map">
+		INSERT INTO file (originfile, savefolder, savefile, article_id)
+		VALUES
+		<foreach collection="fileList" item="file" separator=",">
+			(#{file.originFile}, #{file.saveFolder}, #{file.saveFile},
+			#{articleId})
+		</foreach>
+	</insert>
+	
+	<update id="updateLft" parameterType="map">
+		<selectKey keyProperty="targetLft,targetDepth"
+			resultType="map" order="BEFORE">
+			select lft as targetLft, depth as targetDepth
+			from article
+			where id = #{articleId}
+		</selectKey>
+		update article set lft = lft + 2
+		where lft > #{targetLft}
+		and id > 0
+		and board_id=#{boardId}
+	</update>
+
+	<update id="updateRgt" parameterType="map">
+		update article set rgt =
+		rgt + 2
+		where rgt > #{targetLft}
+		and id > 0
+		and board_id=#{boardId}
+	</update>
+
+	<select id="selectArticle" parameterType="map"
+		resultMap="articleMap">
+		SELECT 
+			a.id AS id, 
+			a.title AS title,
+			a.content AS content,
+			a.board_id AS board_id,
+			a.user_seq AS user_seq,
+			a.view_cnt AS view_cnt,
+			a.lft AS lft,
+			a.rgt AS rgt,
+			a.depth AS depth,
+			a.created_at AS created_at,
+			a.modified_at AS modified_at,
+			u.user_name AS user_name,
+			u.nickname AS nickname,
+			(SELECT IFNULL(COUNT(c.id),0) FROM article_like c WHERE c.article_id = a.id) AS total_like_cnt,
+			(SELECT IFNULL(COUNT(d.id),0) FROM article_dislike d WHERE d.article_id = a.id) AS total_dislike_cnt,
+			(SELECT IFNULL(COUNT(c.id),0) FROM article_like c WHERE c.article_id = a.id AND c.user_seq = #{userSeq}) AS like_cnt,
+			(SELECT IFNULL(COUNT(d.id),0) FROM article_dislike d WHERE d.article_id = a.id AND d.user_seq = #{userSeq}) AS dislike_cnt		
+		FROM article a, user u
+		WHERE a.id = #{articleId} and a.user_seq = u.user_seq
+	</select>
+	
+	<select id="selectArticleByBoardId" parameterType="map"
+		resultMap="articleMap">
+		SELECT *
+		FROM article
+		WHERE baord_id = #{boardId}
+	</select>
+	
+	<select id="selectArticles" parameterType="map"
+		resultMap="articleMap">
+		SELECT 
+			a.id AS id, 
+			a.title AS title,
+			a.content AS content,
+			a.board_id AS board_id,
+			a.user_seq AS user_seq,
+			a.view_cnt AS view_cnt,
+			a.lft AS lft,
+			a.rgt AS rgt,
+			a.depth AS depth,
+			a.created_at AS created_at,
+			a.modified_at AS modified_at,
+			u.user_name AS user_name,
+			u.nickname AS nickname,
+			(SELECT IFNULL(COUNT(c.id),0) FROM article_like c WHERE c.article_id = a.id) AS total_like_cnt,
+			(SELECT IFNULL(COUNT(d.id),0) FROM article_dislike d WHERE d.article_id = a.id) AS total_dislike_cnt,
+			(SELECT IFNULL(COUNT(c.id),0) FROM article_like c WHERE c.article_id = a.id AND c.user_seq = #{userSeq}) AS like_cnt,
+			(SELECT IFNULL(COUNT(d.id),0) FROM article_dislike d WHERE d.article_id = a.id AND d.user_seq = #{userSeq}) AS dislike_cnt			
+		FROM article a, user u
+		WHERE a.user_seq = u.user_seq
+		AND a.board_id = #{boardId}
+		<include refid="search"></include>
+		ORDER BY a.rgt DESC
+		LIMIT ${limit} OFFSET ${offset}
+	</select>
+	
+	<select id="totalItemCount" resultType="int" parameterType="map">
+		SELECT IFNULL(COUNT(a.id),0) FROM article a, `user` u 
+		WHERE a.user_seq = u.user_seq
+		AND a.board_id = #{boardId}
+		<include refid="search"></include>
+		
+	</select>
+
+	<update id="updateArticle" parameterType="map">
+		UPDATE article
+		SET title = #{title},
+		content = #{content},
+		board_id = #{boardId},
+		user_seq = #{userSeq},
+		modified_at = now()
+		WHERE id = #{articleId}
+	</update>
+	
+	<delete id="deleteArticle" parameterType="int">
+		DELETE FROM article
+		WHERE id = #{articleId}
+	</delete>
+	
+	<insert id="likeArticle" parameterType="map">
+		insert into article_like (user_seq, article_id)
+		values (#{userSeq}, #{articleId})
+	</insert>
+	
+	<insert id="dislikeArticle" parameterType="map">
+		insert into article_dislike (user_seq, article_id)
+		values (#{userSeq}, #{articleId})
+	</insert>
+	
+	<sql id="search">
+		<if test="keyword != null and keyword != ''">
+			<if test="keytype == 'nickname'">
+				AND u.nickname = #{keyword}
+			</if>
+			<if test="keytype != 'nickname'">
+				AND a.${keytype} LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+		</if>
+	</sql>
+	
+	<resultMap type="map" id="articleMap">
+		<result property="articleId" column="id" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="boardId" column="board_id" />
+		<result property="userSeq" column="user_seq" />
+		<result property="viewCnt" column="view_cnt" />
+		<result property="lft" column="lft" />
+		<result property="rgt" column="rgt" />
+		<result property="depth" column="depth" />
+		<result property="createdAt" column="created_at" />
+		<result property="modifiedAt" column="modified_at" />
+		<result property="userName" column="user_name" />
+		<result property="nickName" column="nickname" />
+		<result property="likeCnt" column="like_cnt" />
+		<result property="dislikeCnt" column="dislike_cnt" />
+		<result property="totalLikeCnt" column="total_like_cnt" />
+		<result property="totalDislikeCnt" column="total_dislike_cnt" />
+	</resultMap>
+</mapper>
