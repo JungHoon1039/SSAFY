@@ -2,11 +2,13 @@
   <div>
     <div id="map"></div>
     <button @click="initMap">내위치</button>
+    <button @click="displayMarker(myMarkerPosition)">즐겨찾기 마커 표시</button>
+    <button @click="displayMarker([])">즐겨찾기 마커 해제</button>
   </div>
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, toRaw } from 'vue';
 let map = null;
 const initMap = function () {
   let myCenter = new kakao.maps.LatLng(33.450701, 126.570667); //카카오본사
@@ -58,7 +60,34 @@ const myMarkerPosition = ref([
   [33.450701, 126.570667],
 ])
 
+const markers = ref([]);
 
+const displayMarker = function (markerPositions) {
+  //마커지우기
+  if (markers.value.length > 0) {
+    markers.value.forEach((marker) => marker.setMap(null));
+  }
+
+  const positions = markerPositions.map(
+    (position) => new kakao.maps.LatLng(...position)
+  );
+  if (positions.length > 0) {
+    markers.value = positions.map(
+      (position) =>
+        new kakao.maps.Marker({
+          map: toRaw(map),
+          position,
+        })
+    );
+
+    const bounds = positions.reduce(
+      (bounds, latlng) => bounds.extend(latlng),
+      new kakao.maps.LatLngBounds()
+    );
+
+    toRaw(map).setBounds(bounds);
+  }
+};
 
 
 
