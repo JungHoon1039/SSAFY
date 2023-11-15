@@ -23,7 +23,7 @@ import com.ssafy.board.model.service.BoardService;
 @RequestMapping("/api")
 public class BoardRestController {
 	// 응답을 편하게 하기 위해 상수로 지정
-	private static final String SUCCESS = "succes";
+	private static final String SUCCESS = "success";
 	private static final String FAIL = "fail";
 
 	@Autowired
